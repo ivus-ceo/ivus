@@ -1,0 +1,33 @@
+$montserrat-fonts: (
+	'Montserrat-Black': 900,
+	'Montserrat-ExtraBold': 800,
+	'Montserrat-Bold': 700,
+	'Montserrat-SemiBold': 600,
+	'Montserrat-Medium': 500,
+	'Montserrat-Regular': 400,
+	'Montserrat-Light': 300,
+	'Montserrat-ExtraLight': 200,
+	'Montserrat-Thin': 100
+);
+
+@each $name, $weight in $montserrat-fonts {
+	@font-face {
+		font-family: 'Montserrat';
+		src: url('~/assets/fonts/Montserrat/#{ $name }.ttf') format('truetype');
+		font-weight: $weight;
+	}
+
+	@if ($name != 'Montserrat-Regular') {
+		@font-face {
+			font-family: 'Montserrat';
+			src: url('~/assets/fonts/Montserrat/#{ $name }Italic.ttf') format('truetype');
+			font-weight: 900;
+			font-style: italic;
+		}
+	}
+}
+
+@font-face {
+	font-family: 'Rumburak';
+	src: url('~/assets/fonts/Rumburak/Rumburak.ttf') format('truetype');
+}

@@ -1,0 +1,11 @@
+@keyframes fadeOutGrow {
+	0% {
+		opacity: .6;
+		@include square(1rem);
+	}
+
+	100% {
+		opacity: 0;
+		@include square(10rem);
+	}
+}

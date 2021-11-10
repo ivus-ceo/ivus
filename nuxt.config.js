@@ -12,13 +12,24 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: '/icons/all.min.css' }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/styles/default.scss'
   ],
+
+  // Global SCSS used for mixins, variables
+  styleResources: {
+    scss: [
+      '~assets/styles/_mixins.scss',
+      '~assets/styles/_variables.scss',
+      '~assets/styles/_animation.scss',
+    ]
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -27,11 +38,14 @@ export default {
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [
     '~/components',
-    { path: '~/components/includes', extensions: ['vue'] }
+    { path: '~/components/includes', extensions: ['vue'] },
+    { path: '~/components/inputs', extensions: ['vue'] },
+    { path: '~/components/partials', extensions: ['vue'] }
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/style-resources'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

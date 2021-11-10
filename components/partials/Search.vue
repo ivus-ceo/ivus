@@ -1,11 +1,13 @@
 <template>
-  <span>
-    
-  </span>
+  
 </template>
 
 <script>
   export default {
-    layout: 'public'
+    
   }
 </script>
+
+<style lang="scss">
+  
+</style>
