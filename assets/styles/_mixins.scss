@@ -1,4 +1,4 @@
-@mixin position($position: 'center') {
+@mixin flex($position: 'center') {
 	display: flex;
 
 	@if ($position == 'center') {
@@ -24,7 +24,7 @@
 	}
 }
 
-@mixin media($device: 'null') {
+@mixin mediaold($device: 'null') {
 	@if $device == 'mobile' {
 		/* Mobile media */
 		@media screen and (min-width: 0px) and (max-width: 600px) {
@@ -43,6 +43,25 @@
 	}
 }
 
+@mixin media($device, $breakpoint: '') {
+	@if ($device == phone) {
+		/* Phone breakpoint */
+		@media screen and (min-width: 0px) and (max-width: #{$breakpoint-phone}) {
+			@content;
+		}
+	} @else if ($device == tablet) {
+		/* Tablet breakpoint */
+		@media screen and (min-width: #{$breakpoint-phone}) and (max-width: #{$breakpoint-tablet}) {
+			@content;
+		}
+	} @else if ($device == desktop) {
+		/* Desktop breakpoint */
+		@media screen and (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop}) {
+			@content;
+		}
+	}
+}
+
 @mixin square($size: 'null') {
 	width: $size;
 	height: $size;
@@ -51,4 +70,11 @@
 @mixin fixed-width($size: 'null') {
 	min-width: $size;
 	max-width: $size;
+}
+
+@mixin fixed-size($width: 'null', $height: 'null') {
+	min-width: $width;
+	max-width: $width;
+	min-height: $height;
+	max-height: $height;
 }

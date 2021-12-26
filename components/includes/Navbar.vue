@@ -9,7 +9,7 @@
       </div>
 
       <div class="navbar__menu">
-        <Button class="navbar__menu-icon" ref="icon" @buttonClick="toggleSidebar">
+        <Button class="navbar__menu-icon" ref="icon" @buttonClick="emitToggleSidebar">
           <span class="navbar__menu-icon-dash"></span>
           <span class="navbar__menu-icon-dash"></span>
           <span class="navbar__menu-icon-dash"></span>
@@ -27,9 +27,9 @@
     name: 'Navbar',
 
     methods: {
-      toggleSidebar(e) {
+      emitToggleSidebar(e) {
         this.$refs.icon.$el.classList.toggle('navbar__menu-icon--active-sidebar');
-        this.$nuxt.$emit('eventToggleSidebar')
+        this.$nuxt.$emit('eventToggleSidebar');
       }
     }
   }
@@ -47,10 +47,11 @@
     z-index: $z-index;
     box-shadow: $box-shadow;
     background-color: #fff;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    
-    @include position(center);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
 
     .navbar__brand {
       font-size: 3rem;
@@ -96,7 +97,7 @@
           height: .2142rem;
           pointer-events: none;
           border-radius: .1rem;
-          background-color: #000;
+          background-color: $color-dark-blue;
           transition: transform $transition-time $transition-mode;
 
           &:nth-child(2) {

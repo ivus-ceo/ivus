@@ -9,3 +9,77 @@
 		@include square(10rem);
 	}
 }
+
+/* Specific animations */
+
+@keyframes animateExpandedSidebar {
+	0% {
+		border-radius: 0;
+		max-height: 100vh;
+		background-color: transparent;
+	}
+
+	50% {
+		background-color: #fff;
+		transform: translateX(0);
+		max-height: calc(100vh - 8rem);
+		border-radius: $border-radius * 2;
+	}
+
+	100% {
+		background-color: #fff;
+		transform: translateX(-60.5%);
+		max-height: calc(100vh - 8rem);
+		border-radius: $border-radius * 2;
+	}
+}
+
+@keyframes animateCollapsedSidebar {
+	0% {
+		background-color: #fff;
+		transform: translateX(-60.5%);
+		max-height: calc(100vh - 8rem);
+		border-radius: $border-radius * 2;
+	}
+
+	50% {
+		background-color: #fff;
+		transform: translateX(0);
+		max-height: calc(100vh - 8rem);
+		border-radius: $border-radius * 2;
+	}
+
+	100% {
+		border-radius: 0;
+		max-height: 100vh;
+		background-color: transparent;
+	}
+}
+
+@keyframes animateExpandedBeforeSidebar {
+	0% {
+		box-shadow: none;
+		transform: translateX(-60.5%);
+		background-color: transparent;
+	}
+
+	100% {
+		box-shadow: $box-shadow;
+		transform: translateX(calc(-60.5% + 2rem));
+		background-color: rgba($color: #fff, $alpha: .4);
+	}
+}
+
+@keyframes animateExpandedAfterSidebar {
+	0% {
+		box-shadow: none;
+		transform: translateX(-60.5%);
+		background-color: transparent;
+	}
+
+	100% {
+		box-shadow: $box-shadow;
+		transform: translateX(calc(-60.5% + 1rem));
+		background-color: rgba($color: #fff, $alpha: .6);
+	}
+}

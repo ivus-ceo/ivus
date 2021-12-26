@@ -13,13 +13,13 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '/icons/all.min.css' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp'}
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~/assets/styles/default.scss'
+    '~/assets/styles/global.scss'
   ],
 
   // Global SCSS used for mixins, variables
@@ -33,6 +33,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~assets/scripts/global.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -52,7 +53,12 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
+
+  auth: {
+    // Options
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -65,6 +71,7 @@ export default {
   },
 
   server: {
+    host: '0.0.0.0',
     port: process.env.PORT || 3000
   },
 
