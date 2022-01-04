@@ -1,49 +1,14 @@
-@mixin flex($position: 'center') {
+@mixin flex($main-axis: null, $cross-axis: null) {
 	display: flex;
-
-	@if ($position == 'center') {
-		/* center position */
-		align-items: center;
-		justify-content: center;
-	} @else if $position == 'left' {
-		/* center and left position */
-		align-items: center;
-		justify-content: flex-start;
-	} @else if $position == 'right' {
-		/* center and rigth position */
-		align-items: center;
-		justify-content: flex-end;
-	} @else if $position == 'top' {
-		/* top and center position */
-		align-items: flex-start;
-		justify-content: center;
-	} @else if $position == 'bottom' {
-		/* bottom and center position */
-		align-items: flex-end;
-		justify-content: center;
-	}
+	align-items: $cross-axis;
+	justify-content: $main-axis;
 }
 
-@mixin mediaold($device: 'null') {
-	@if $device == 'mobile' {
-		/* Mobile media */
-		@media screen and (min-width: 0px) and (max-width: 600px) {
-			@content;
-		}
-	} @else if $device == 'tablet' {
-		/* Tablet media */
-		@media screen and (min-width: 600px + 1px) and (max-width: 768px) {
-			@content;
-		}
-	} @else if $device == 'desktop' {
-		/* Desktop media */
-		@media screen and (min-width: 768px + 1px) {
-			@content;
-		}
-	}
+@mixin grid() {
+	display: grid;
 }
 
-@mixin media($device, $breakpoint: '') {
+@mixin media($device) {
 	@if ($device == phone) {
 		/* Phone breakpoint */
 		@media screen and (min-width: 0px) and (max-width: #{$breakpoint-phone}) {

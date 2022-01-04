@@ -21,23 +21,19 @@
     methods: {
       toggleSidebar() {
         const layout = this.$refs.layout;
+        const timeout = 700;
 
         if (layout.classList.contains('layout--show-sidebar')) {
-
           layout.classList.add('layout--hide-sidebar');
           layout.classList.remove('layout--show-sidebar');
-
+          
           setTimeout(() => { 
             layout.classList.remove('layout--hide-sidebar');
-          }, 700);
-
+          }, timeout);
         } else {
-
           layout.classList.add('layout--show-sidebar');
           layout.classList.remove('layout--hide-sidebar');
-
         }
-        // this.$hello('peter')
       }
     },
 
@@ -84,8 +80,11 @@
       .layout__content {
         overflow: hidden;
         box-shadow: $box-shadow;
-        animation: animateExpandedSidebar $transition-sidebar forwards;
-        // animation: animateExpandedSidebar 0s forwards;
+        // animation: animateExpandedSidebar $transition-sidebar forwards;
+        background-color: #fff;
+        transform: translateX(-60.5%);
+        max-height: calc(100vh - 8rem);
+        border-radius: $border-radius * 2;
       }
     }
 
@@ -93,7 +92,10 @@
       justify-content: center;
 
       .layout__content {
-        animation: animateCollapsedSidebar $transition-sidebar forwards;
+        // animation: animateCollapsedSidebar $transition-sidebar forwards;
+        border-radius: 0;
+        max-height: 100vh;
+        background-color: transparent;
       }
     }
 

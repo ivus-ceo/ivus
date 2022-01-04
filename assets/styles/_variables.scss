@@ -8,17 +8,19 @@
 "Y","Z" 
 */
 
-$breakpoint-desktop: 1024px;
-$breakpoint-tablet: 768px;
 $breakpoint-phone: 450px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
 $box-shadow: 0px 0 10px rgba(black, 0.03);
 $box-shadow-active: 0px 0 10px rgba(black, 0.3);
 $border: 1px solid #e3e3e3;
 $border-radius: 1rem;
 
 $color-body: #f6f7ff;
-$color-border: #e3e3e3;
+$color-base: #ff2a6b;
+$color-base-accent: lighten($color-base, 50);
 $color-dark-blue: #000532;
+$color-dark-blue-accent: lighten(#000532, 5);
 
 $font-family-regular: 'Montserrat-Regular', sans-serif;
 $font-family-header: 'Rumburak', sans-serif;
@@ -27,7 +29,6 @@ $font-line-height-base: 1.6;
 
 $transition-time: .3s;
 $transition-mode: ease-in-out;
-$transition-sidebar: .7s $transition-mode;
-$transition-sidebar-delay: .4s;
+$transition-sidebar: .75s $transition-mode;
 
 $z-index: 10000;

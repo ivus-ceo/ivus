@@ -56,6 +56,26 @@
 	}
 }
 
+@keyframes animateExpandedSidebarMenu {
+	0% {
+		right: calc(-100vw + 39.5% + 2rem);
+	}
+
+	100% {
+		right: 0;
+	}
+}
+
+@keyframes animateCollapsedSidebarMenu {
+	0% {
+		right: 0;
+	}
+
+	100% {
+		right: calc(-100vw + 39.5% + 2rem);
+	}
+}
+
 @keyframes animateExpandedBeforeSidebar {
 	0% {
 		box-shadow: none;
