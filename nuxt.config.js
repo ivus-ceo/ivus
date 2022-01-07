@@ -19,29 +19,27 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~/assets/styles/global.scss'
+    '~/assets/styles/app.scss'
   ],
 
   // Global SCSS used for mixins, variables
   styleResources: {
     scss: [
-      '~assets/styles/_mixins.scss',
-      '~assets/styles/_variables.scss',
-      '~assets/styles/_animation.scss',
+      '~/assets/styles/utilities/_mixins.scss',
+      '~/assets/styles/utilities/_variables.scss',
     ]
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~assets/scripts/global.js'
+    '~/assets/scripts/app.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [
     '~/components',
-    { path: '~/components/includes', extensions: ['vue'] },
-    { path: '~/components/inputs', extensions: ['vue'] },
-    { path: '~/components/partials', extensions: ['vue'] }
+    { path: '~/components/forms', extensions: ['vue'] },
+    { path: '~/components/includes', extensions: ['vue'] }
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -77,5 +75,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    analyze: false
   }
 }

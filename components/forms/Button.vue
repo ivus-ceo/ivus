@@ -46,7 +46,8 @@
     // transition: .2s box-shadow;
     // box-shadow: 0 1px 5px 0 rgba(black, .2);
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       // box-shadow: 0 5px 10px 0 rgba(black, .4);
     }
 

@@ -1,5 +1,5 @@
 <template>
-  <main class="layout layout--show-sidebar" ref="layout">
+  <main class="layout" ref="layout">
     <div class="layout__content">
       <Nuxt/>
 
@@ -21,7 +21,7 @@
     methods: {
       toggleSidebar() {
         const layout = this.$refs.layout;
-        const timeout = 700;
+        const timeout = 600;
 
         if (layout.classList.contains('layout--show-sidebar')) {
           layout.classList.add('layout--hide-sidebar');
@@ -57,7 +57,8 @@
     &.layout--show-sidebar {
       justify-content: center;
 
-      &::before, &::after {
+      &::before,
+      &::after {
         content: '';
         z-index: -1;
         width: 100%;
@@ -69,22 +70,22 @@
 
       &::before {
         max-height: calc(100vh - 12rem);
-        animation: animateExpandedBeforeSidebar $transition-sidebar .8s forwards;
+        animation: animateExpandedBeforeSidebar .6s .5s $transition-mode forwards;
       }
 
       &::after {
         max-height: calc(100vh - 10rem);
-        animation: animateExpandedAfterSidebar $transition-sidebar .75s forwards;
+        animation: animateExpandedAfterSidebar .6s .4s $transition-mode forwards;
       }
 
       .layout__content {
         overflow: hidden;
         box-shadow: $box-shadow;
-        // animation: animateExpandedSidebar $transition-sidebar forwards;
         background-color: #fff;
         transform: translateX(-60.5%);
         max-height: calc(100vh - 8rem);
         border-radius: $border-radius * 2;
+        animation: animateExpandedSidebar .6s $transition-mode forwards;
       }
     }
 
@@ -92,10 +93,10 @@
       justify-content: center;
 
       .layout__content {
-        // animation: animateCollapsedSidebar $transition-sidebar forwards;
         border-radius: 0;
         max-height: 100vh;
         background-color: transparent;
+        animation: animateCollapsedSidebar .6s $transition-mode;
       }
     }
 
@@ -106,7 +107,7 @@
     }
 
     .layout__content-footer {
-
+      
     }
   }
 </style>
