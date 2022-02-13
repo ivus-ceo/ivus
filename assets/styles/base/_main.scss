@@ -20,6 +20,7 @@ h5,
 h6 {
 	font-family: $font-family-regular;
 	font-weight: 700;
+	text-transform: uppercase;
 }
 
 h1 {
@@ -45,4 +46,8 @@ a {
 img {
 	object-fit: cover;
 	object-position: center;
+}
+
+p {
+	line-height: 1.4;
 }

@@ -79,27 +79,27 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss">  
   nav.navbar {
     left: 0;
     bottom: 0;
     width: 100vw;
-    height: 4rem;
-    position: fixed;
+    height: 5rem;
+    display: flex;
     padding: 0 2rem;
+    position: fixed;
     overflow: hidden;
     z-index: $z-index;
-    box-shadow: $box-shadow;
-    background-color: #fff;
-    display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: $box-shadow;
+    background-color: #fff;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
 
     .navbar__brand {
-      font-size: 3rem;
-      transform: translateY(-8px);
+      font-size: 4.5rem;
+      transform: translateY(-12px);
       font-family: $font-family-header;
 
       .navbar__brand-link {
@@ -109,8 +109,8 @@
 
     .navbar__menu {
       top: .5rem;
-      width: 3rem;
-      height: 3rem;
+      width: 4rem;
+      height: 4rem;
       overflow: hidden;
       position: absolute;
       border-radius: 50%;
@@ -142,19 +142,19 @@
         }
 
         .ripple {
-          background-color: #000;
+          background-color: $color-dark-blue;
         }
 
         .navbar__menu-icon-dash {
           display: block;
-          width: 1.5rem;
-          height: .2142rem;
+          width: 2.3rem;
+          height: .27rem;
           pointer-events: none;
-          border-radius: .1rem;
+          border-radius: .2rem;
           background-color: $color-dark-blue;
 
           &:nth-child(2) {
-            margin: .2857rem 0;
+            margin: .37rem 0;
           }
         }
       }
@@ -164,7 +164,7 @@
   aside.sidebar {
     top: 2rem;
     display: flex;
-    position: absolute;
+    position: fixed;
     padding-right: 2rem;
     z-index: $z-index - 1;
     align-items: flex-end;
@@ -174,7 +174,7 @@
     right: calc(-100vw + 39.5% + 2rem);
 
     &.sidebar--show-sidebar {
-      right: 0;
+      // right: 0;
 
       .sidebar__close {
         animation: animateExpandedSidebarMenu .6s $transition-mode forwards;

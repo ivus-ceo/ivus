@@ -1,10 +1,8 @@
 <template>
   <main class="layout" ref="layout">
     <div class="layout__content">
-      <Nuxt/>
-
-      <div class="layout__content-footer">
-
+      <div class="layout__content-inner">
+        <Nuxt/>
       </div>
     </div>
 
@@ -21,7 +19,6 @@
     methods: {
       toggleSidebar() {
         const layout = this.$refs.layout;
-        const timeout = 600;
 
         if (layout.classList.contains('layout--show-sidebar')) {
           layout.classList.add('layout--hide-sidebar');
@@ -29,7 +26,7 @@
           
           setTimeout(() => { 
             layout.classList.remove('layout--hide-sidebar');
-          }, timeout);
+          }, 600);
         } else {
           layout.classList.add('layout--show-sidebar');
           layout.classList.remove('layout--hide-sidebar');
@@ -49,65 +46,110 @@
   main.layout {
     width: 100vw;
     display: flex;
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
     flex-direction: column;
-    height: calc(100vh - 4rem);
+    height: calc(100vh - 5rem);
 
     &.layout--show-sidebar {
-      justify-content: center;
+      overflow-y: hidden;
 
       &::before,
       &::after {
         content: '';
-        z-index: -1;
         width: 100%;
-        height: 100%;
         display: block;
-        position: absolute;
+        position: fixed;
+        box-shadow: $box-shadow;
         border-radius: $border-radius * 2;
       }
 
       &::before {
-        max-height: calc(100vh - 12rem);
-        animation: animateExpandedBeforeSidebar .6s .5s $transition-mode forwards;
+        top: 4rem;
+        left: 0;
+        z-index: -1;
+        opacity: .6;
+        background-color: #fff;
+        height: calc(100% - 13rem);
+        transform: translateX(-100%);
+        animation: animateExpandedBeforeSidebar .6s .4s $transition-mode forwards;
       }
 
       &::after {
-        max-height: calc(100vh - 10rem);
-        animation: animateExpandedAfterSidebar .6s .4s $transition-mode forwards;
-      }
-
-      .layout__content {
-        overflow: hidden;
-        box-shadow: $box-shadow;
+        top: 5rem;
+        left: 0;
+        z-index: -2;
+        opacity: .4;
         background-color: #fff;
-        transform: translateX(-60.5%);
-        max-height: calc(100vh - 8rem);
-        border-radius: $border-radius * 2;
-        animation: animateExpandedSidebar .6s $transition-mode forwards;
+        height: calc(100% - 15rem);
+        transform: translateX(-100%);
+        animation: animateExpandedAfterSidebar .6s .5s $transition-mode forwards;
       }
-    }
-
-    &.layout--hide-sidebar {
-      justify-content: center;
 
       .layout__content {
-        border-radius: 0;
-        max-height: 100vh;
-        background-color: transparent;
-        animation: animateCollapsedSidebar .6s $transition-mode;
+        &::before,
+        &::after {
+          left: 0;
+          content: '';
+          width: 100%;
+          display: block;
+          position: fixed;
+        }
+
+        &::before {
+          top: 3rem;
+          z-index: -1;
+          box-shadow: $box-shadow;
+          height: calc(100% - 11rem);
+          border-radius: $border-radius * 2;
+          animation: animateExpandedSidebar .6s .2s $transition-mode forwards;
+        }
+
+        &::after {
+          top: 0;
+          height: 3rem;
+          background-color: $color-body;
+          animation: animateExpandedTopBox .2s $transition-mode forwards;
+        }
+
+        .layout__content-inner {
+          animation: animateExpandedContent .6s .2s $transition-mode forwards;
+        }
+      }
+
+      .layout__navbar {
+        &::before {
+          left: 0;
+          bottom: 5rem;
+          content: '';
+          width: 100%;
+          height: 5rem;
+          display: block;
+          position: fixed;
+          background-color: $color-body;
+          animation: animateExpandedBottomBox .2s $transition-mode forwards;
+        }
       }
     }
+
+    // &.layout--hide-sidebar {
+    //   justify-content: center;
+
+    //   .layout__content {
+    //     border-radius: 0;
+    //     max-height: 100vh;
+    //     background-color: transparent;
+    //     animation: animateCollapsedSidebar .6s $transition-mode;
+    //   }
+    // }
 
     .layout__content {
       flex: auto;
-      padding: 2rem;
       position: relative;
-    }
 
-    .layout__content-footer {
+      .layout__content-backdrop {
       
+      }
     }
   }
 </style>
