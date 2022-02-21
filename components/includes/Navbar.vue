@@ -20,27 +20,47 @@
     
     <!-- Start of sidebar -->
     <aside class="sidebar" ref="sidebar">
-      <div class="sidebar__close" @click="emitToggleSidebar">
-        <i class="material-icons-outlined">close</i>
+      <div class="sidebar__header">
+        <div class="sidebar__header-theme">
+          <i class="material-icons-outlined">dark_mode</i>
+        </div>
+
+        <div class="sidebar__header-close" @click="emitToggleSidebar">
+          <i class="material-icons-outlined">close</i>
+        </div>
       </div>
 
-      <div class="sidebar__avatar">
-        <nuxt-link to="/profile">
-          <img src="https://images.unsplash.com/photo-1640275986993-7076998713c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=432&q=80" alt="">
-        </nuxt-link>
+      <div class="sidebar__search">
+        <Input id="search" name="search" placeholder="Search"/>
       </div>
 
       <div class="sidebar__links">
-        <nuxt-link v-for="link in links" :key="link.id" :to="link.href" class="sidebar__link">
-          {{ link.name }}
-          <i class="material-icons-round">{{ link.icon }}</i>
-        </nuxt-link>
+        <div class="sidebar__links-header">
+          Menu
+        </div>
+
+        <ul class="sidebar__links-items">
+          <li class="sidebar__links-item" v-for="link in links" :key="link.id" @click="emitToggleSidebar">
+            <nuxt-link class="sidebar__links-item-link" :to="link.href">
+              <i class="sidebar__links-item-icon material-icons-round">{{ link.icon }}</i>
+              <span class="sidebar__links-item-title">{{ link.name }}</span>
+            </nuxt-link>
+          </li>
+        </ul>
       </div>
 
-      <div class="sidebar__footer">
-        <nuxt-link to="/logout" class="sidebar__link">
-          Logout <i class="material-icons">logout</i>
-        </nuxt-link>
+      <div class="sidebar__options">
+        <div class="sidebar__options-language">
+          English
+        </div>
+
+        <div class="sidebar__options-currency">
+          USD
+        </div>
+      </div>
+
+      <div class="sidebar__shopping-cart">
+
       </div>
     </aside>
     <!-- End of sidebar -->
@@ -55,7 +75,7 @@
       return {
         links: [
           { id: 1, name: 'Home', icon: 'home', href: '/' },
-          { id: 2, name: 'Shop', icon: 'shop', href: '/shop' },
+          { id: 2, name: 'Login', icon: 'login', href: '/auth/login' },
         ]
       }
     },
@@ -67,7 +87,19 @@
       },
 
       toggleSidebar() {
-        this.$refs.sidebar.classList.toggle('sidebar--show-sidebar');
+        const sidebar = this.$refs.sidebar;
+
+        if (sidebar.classList.contains('sidebar--show-sidebar')) {
+          sidebar.classList.add('sidebar--hide-sidebar');
+          sidebar.classList.remove('sidebar--show-sidebar');
+          
+          setTimeout(() => { 
+            sidebar.classList.remove('sidebar--hide-sidebar');
+          }, 300);
+        } else {
+          sidebar.classList.add('sidebar--show-sidebar');
+          sidebar.classList.remove('sidebar--hide-sidebar');
+        }
       }
     },
 
@@ -79,7 +111,7 @@
   }
 </script>
 
-<style lang="scss">  
+<style lang="scss">
   nav.navbar {
     left: 0;
     bottom: 0;
@@ -162,104 +194,183 @@
   }
 
   aside.sidebar {
-    top: 2rem;
+    top: 3rem;
     display: flex;
     position: fixed;
     padding-right: 2rem;
     z-index: $z-index - 1;
     align-items: flex-end;
     flex-direction: column;
-    height: calc(100vh - 8rem);
-    width: calc(100vw - 39.5% - 4rem);
-    right: calc(-100vw + 39.5% + 2rem);
+    height: calc(100% - 11rem);
+    width: calc(100vw - 34.4% - 4rem);
+    right: calc(-100vw + 34.4% + 2rem);
 
     &.sidebar--show-sidebar {
-      // right: 0;
+      right: 0;
 
-      .sidebar__close {
-        animation: animateExpandedSidebarMenu .6s $transition-mode forwards;
+      .sidebar__header {
+        animation: animateExpandedSidebarMenu .3s .1s $transition-mode forwards;
       }
 
-      .sidebar__avatar {
-        animation: animateExpandedSidebarMenu .75s $transition-mode forwards;
+      .sidebar__search {
+        animation: animateExpandedSidebarMenu .3s .15s $transition-mode forwards;
       }
 
       .sidebar__links {
-        animation: animateExpandedSidebarMenu .9s $transition-mode forwards;
+        animation: animateExpandedSidebarMenu .3s .2s $transition-mode forwards;
       }
 
-      .sidebar__footer {
-        animation: animateExpandedSidebarMenu 1.05s $transition-mode forwards;
+      .sidebar__options {
+        animation: animateExpandedSidebarMenu .3s .25s $transition-mode forwards;
       }
-    }
 
-    .sidebar__close {
-      cursor: pointer;
-      user-select: none;
-      position: relative;
-      box-shadow: $box-shadow;
-      background-color: #fff;
-      border-radius: $border-radius;
-      transition: $transition-time $transition-mode;
-
-      @include square(3rem);
-      @include flex(center, center);
-
-      i {
-        font-size: 2rem;
+      .sidebar__shopping-cart {
+        animation: animateExpandedSidebarMenu .3s .3s $transition-mode forwards;
       }
     }
 
-    .sidebar__avatar {
-      width: 3.5rem;
-      height: 3.5rem;
-      position: relative;
-      margin-top: 1.5rem;
-      margin-right: .5rem;
+    &.sidebar--hide-sidebar {
+      right: 0;
 
-      img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        outline: .5rem solid #fff;
+      .sidebar__header {
+        animation: animateCollapsedSidebarMenu .1s $transition-mode forwards;
+      }
+
+      .sidebar__search {
+        animation: animateCollapsedSidebarMenu .1s $transition-mode forwards;
+      }
+
+      .sidebar__links {
+        animation: animateCollapsedSidebarMenu .1s $transition-mode forwards;
+      }
+
+      .sidebar__options {
+        animation: animateCollapsedSidebarMenu .1s $transition-mode forwards;
+      }
+
+      .sidebar__shopping-cart {
+        animation: animateCollapsedSidebarMenu .1s $transition-mode forwards;
+      }
+    }
+
+    .sidebar__header {
+      width: 100%;
+      transform: translateX(calc(100% + 2rem));
+      
+      @include flex(space-between);
+
+      & > div {
+        height: 3.5rem;
+        cursor: pointer;
+        user-select: none;
+        width: calc(50% - .5rem);
+        background-color: #fff;
+        box-shadow: $box-shadow;
+        border-radius: $border-radius;
+
+        @include flex(center, center);
+
+        & > i {
+          font-size: 2rem;
+        }
+      }
+
+      .sidebar__header-theme {
+        
+      }
+
+      .sidebar__header-close {
+
+      }
+    }
+
+    .sidebar__search {
+      width: 100%;
+      margin-top: 1rem;
+      transform: translateX(calc(100% + 2rem));
+
+      input {
+        height: 3.5rem;
       }
     }
 
     .sidebar__links {
-      flex: auto;
+      flex: 1;
       width: 100%;
-      padding: 1rem 0 0;
-      text-align: right;
-      position: relative;
-      flex-direction: column;
+      margin: 1rem 0;
+      padding: 0 1rem;
+      background-color: #fff;
+      box-shadow: $box-shadow;
+      border-radius: $border-radius;
+      transform: translateX(calc(100% + 2rem));
 
-      @include flex(flex-start, flex-end);
-    }
-
-    .sidebar__footer {
-      width: 100%;
-      position: relative;
-    }
-
-    .sidebar__link {
-      width: 100%;
-      padding: .8rem 0;
-      font-weight: 500;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: $transition-time $transition-mode;
-
-      @include flex(flex-end, center);
-
-      &.nuxt-link-active {
+      .sidebar__links-header {
+        margin-top: 1rem;
+        font-size: .75rem;
         font-weight: bold;
-        color: $color-base;
+        text-transform: uppercase;
       }
 
-      i {
-        font-size: 1rem;
-        margin-left: .5rem;
+      ul.sidebar__links-items {
+        margin-top: 1rem;
+
+        li.sidebar__links-item {
+
+          .sidebar__links-item-link {
+            padding: .5rem 0;
+
+            @include flex(flex-start, center);
+
+            .sidebar__links-item-icon {
+              width: 2rem;
+              height: 2rem;
+              font-size: 1rem;
+              box-shadow: $box-shadow;
+              background-color: #fff;
+              border-radius: calc($border-radius / 2);
+
+              @include flex(center, center);
+            }
+
+            .sidebar__links-item-title {
+              margin-left: .5rem;
+            }
+          }
+        }
       }
+    }
+
+    .sidebar__options {
+      width: 100%;
+      transform: translateX(calc(100% + 2rem));
+      
+      @include flex(space-between);
+
+      & > div {
+        height: 3.5rem;
+        cursor: pointer;
+        width: calc(50% - .5rem);
+        background-color: #fff;
+        box-shadow: $box-shadow;
+        border-radius: $border-radius;
+
+        @include flex(center, center);
+
+        & > i {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .sidebar__shopping-cart {
+      width: 100%;
+      height: 6rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      background-color: #fff;
+      box-shadow: $box-shadow;
+      border-radius: $border-radius;
+      transform: translateX(calc(100% + 2rem));
     }
   }
 </style>

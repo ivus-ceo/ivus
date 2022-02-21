@@ -1,5 +1,5 @@
 <template>
-  <button @click="handleClick">
+  <button class="button" @click="handleClick">
     <slot/>
   </button>
 </template>
@@ -36,19 +36,38 @@
 </script>
 
 <style lang="scss">
-  button {
+  .button {
+    width: 100%;
+    height: 3rem;
     border: none;
+    color: #fff;
     outline: none;
     cursor: pointer;
     overflow: hidden;
+    font-weight: 700;
     position: relative;
+    box-shadow: $box-shadow;
     text-transform: uppercase;
-    // transition: .2s box-shadow;
-    // box-shadow: 0 1px 5px 0 rgba(black, .2);
+    border-radius: $border-radius;
+    background-color: $color-base;
+    transition: .1s box-shadow $transition-mode;
+
+    @include flex(center, center);
+
+    i {
+      font-size: 1rem;
+      margin-right: .5rem;
+      pointer-events: none;
+    }
+
+    span {
+      font-size: 1rem;
+      pointer-events: none;
+    }
 
     &:hover,
     &:focus {
-      // box-shadow: 0 5px 10px 0 rgba(black, .4);
+      box-shadow: 0px 0 10px rgba($color-base, 0.5);
     }
 
     span.ripple {

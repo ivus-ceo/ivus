@@ -72,7 +72,7 @@
         background-color: #fff;
         height: calc(100% - 13rem);
         transform: translateX(-100%);
-        animation: animateExpandedBeforeSidebar .6s .4s $transition-mode forwards;
+        animation: animateExpandedBeforeSidebar .3s .4s $transition-mode forwards;
       }
 
       &::after {
@@ -83,7 +83,7 @@
         background-color: #fff;
         height: calc(100% - 15rem);
         transform: translateX(-100%);
-        animation: animateExpandedAfterSidebar .6s .5s $transition-mode forwards;
+        animation: animateExpandedAfterSidebar .3s .5s $transition-mode forwards;
       }
 
       .layout__content {
@@ -102,7 +102,7 @@
           box-shadow: $box-shadow;
           height: calc(100% - 11rem);
           border-radius: $border-radius * 2;
-          animation: animateExpandedSidebar .6s .2s $transition-mode forwards;
+          animation: animateExpandedSidebar .3s .1s $transition-mode forwards;
         }
 
         &::after {
@@ -113,7 +113,7 @@
         }
 
         .layout__content-inner {
-          animation: animateExpandedContent .6s .2s $transition-mode forwards;
+          animation: animateExpandedContent .3s .1s $transition-mode forwards;
         }
       }
 
@@ -132,24 +132,49 @@
       }
     }
 
-    // &.layout--hide-sidebar {
-    //   justify-content: center;
+    &.layout--hide-sidebar {
+      &::before,
+      &::after {
+        display: none;
+      }
 
-    //   .layout__content {
-    //     border-radius: 0;
-    //     max-height: 100vh;
-    //     background-color: transparent;
-    //     animation: animateCollapsedSidebar .6s $transition-mode;
-    //   }
-    // }
+      .layout__content {
+        &::after {
+          top: 0;
+          left: 0;
+          content: '';
+          width: 100%;
+          height: 3rem;
+          display: block;
+          position: fixed;
+          background-color: $color-body;
+          animation: animateCollapsedTopBox .2s $transition-mode forwards;
+        }
+
+        .layout__content-inner {
+          transform: translateX($sidebar-transform-offset);
+          animation: animateCollapsedSidebar .3s $transition-mode forwards;
+        }
+      }
+
+      .layout__navbar {
+        &::before {
+          left: 0;
+          bottom: 3rem;
+          content: '';
+          width: 100%;
+          height: 5rem;
+          display: block;
+          position: fixed;
+          background-color: $color-body;
+          animation: animateCollapsedBottomBox .2s $transition-mode forwards;
+        }
+      }
+    }
 
     .layout__content {
       flex: auto;
       position: relative;
-
-      .layout__content-backdrop {
-      
-      }
     }
   }
 </style>

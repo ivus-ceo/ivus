@@ -4,20 +4,47 @@ export default {
    * @link - https://go.nuxtjs.dev/config-head
    */
   head: {
-    title: 'ivus',
+    title: '%s - ivus',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { 
+        charset: 'utf-8' 
+      },
+      { 
+        name: 'viewport', 
+        content: 'width=device-width, initial-scale=1'
+      },
+      { 
+        hid: 'description', 
+        name: 'description', 
+        content: '' 
+      },
+      { 
+        name: 'format-detection', 
+        content: 'telephone=no' 
+      }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp'}
+      { 
+        rel: 'icon', 
+        type: 'image/x-icon', 
+        href: '/favicon.ico' 
+      },
+      { 
+        rel: 'stylesheet', 
+        href: 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp'
+      },
     ]
+  },
+
+  /**
+   * @Customize loading of the app
+   * @link - https://nuxtjs.org/docs/features/loading/
+   */
+  loading: {
+    color: "#FF2A6B"
   },
 
   /**
@@ -58,14 +85,6 @@ export default {
   ],
 
   /**
-   * @server middleware allows on the same port
-   * @link - https://nuxtjs.org/docs/configuration-glossary/configuration-servermiddleware/
-   */
-   serverMiddleware: {
-    '/api': '~/api/index.js'
-  },
-
-  /**
    * @define the server connection variables for your application inside
    * @link - https://nuxtjs.org/docs/configuration-glossary/configuration-server/
    */
@@ -88,7 +107,6 @@ export default {
    */
   buildModules: [
     '@nuxtjs/style-resources',
-    '@nuxtjs/google-analytics',
     '@nuxtjs/dotenv',
     '@nuxtjs/pwa',
   ],
@@ -101,13 +119,14 @@ export default {
     /**
      * #modules for web optimization
      */
-    '@nuxt/image',
+    // '@nuxt/image', - bug
 
     /**
      * #modules for features
      */
+    '@nuxtjs/component-cache',
     'nuxt-stripe-module',
-    '@nuxtjs/auth-next',
+    '@nuxtjs/firebase',
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
     
@@ -125,10 +144,26 @@ export default {
     '@nuxtjs/robots',
   ],
 
-  auth: {
-    strategies: {
-      local: { /* ... */ },
-      github: { /* ... */ },
+  firebase: {
+    config: {
+      apiKey: process.env.FIREBASE_API_KEY,
+      authDomain: process.env.FIREBASEFIREBASE_AUTH_DOMAIN_API_KEY,
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.FIREBASE_SENDER_ID,
+      appId: process.env.FIREBASE_APP_ID,
+      measurementId: process.env.FIREBASE_MEASUREMENT_ID
+    },
+    services: {
+      auth: true,
+      firestore: false,
+      functions: false,
+      storage: false,
+      database: false,
+      messaging: false,
+      performance: false,
+      analytics: false,
+      remoteConfig: false
     }
   },
 
@@ -147,10 +182,6 @@ export default {
   redirect: [
     /* module options */
   ],
-
-  googleAnalytics: {
-    /* module options */
-  },
 
   'google-adsense': {
     /* module options */

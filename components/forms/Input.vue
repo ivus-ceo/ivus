@@ -5,7 +5,8 @@
            :name="name"
            :type="type" 
            :placeholder="placeholder">
-    <label class="input__label" 
+           
+    <label v-if="this.icon" class="input__label" 
            :for="id">
            <i :class="iconType">{{ this.icon }}</i>
     </label>

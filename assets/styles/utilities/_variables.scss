@@ -18,7 +18,7 @@ $border-radius: 1rem;
 
 $color-body: #f6f7ff;
 $color-base: #ff2a6b;
-$color-base-accent: lighten($color-base, 50);
+$color-base-accent: rgba($color-base, .5);
 $color-dark-blue: #000532;
 $color-dark-blue-accent: lighten(#000532, 5);
 
