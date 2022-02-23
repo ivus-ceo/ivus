@@ -15,7 +15,7 @@
 
     methods: {
       handleSubmit(e) {
-        console.log('Submitted');
+        this.$emit('formSubmit')
       }
     }
   }

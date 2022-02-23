@@ -4,7 +4,8 @@
            :id="id"
            :name="name"
            :type="type" 
-           :placeholder="placeholder">
+           :placeholder="placeholder"
+           @input="handleInput">
            
     <label v-if="this.icon" class="input__label" 
            :for="id">
@@ -30,7 +31,13 @@
         default: 'material-icons'
       },
       icon: String,
-    }
+    },
+
+    methods: {
+      handleInput(e) {
+        this.$emit('input', e.target.value);
+      }
+    },
   }
 </script>
 

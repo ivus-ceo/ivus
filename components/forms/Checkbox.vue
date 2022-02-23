@@ -30,6 +30,7 @@
         (input.checked) ? checkbox.classList.add('checkbox--active') : checkbox.classList.remove('checkbox--active');
 
         this.$emit('checkboxClick');
+        this.$emit('input', input.checked);
       }
     }
   }
