@@ -1,0 +1,104 @@
+section.auth {
+	height: 100%;
+
+	.auth__inner {
+		height: 100%;
+
+		.auth__header {
+			margin-top: 6rem;
+			text-align: center;
+
+			.auth__header-title {
+				margin-bottom: 1rem;
+			}
+
+			.auth__header-description {
+				margin-bottom: 2rem;
+			}
+		}
+
+		.auth__form {
+			margin: 0 auto;
+			max-width: 21rem;
+
+			#login-form,
+			#signup-form {
+				width: 100%;
+
+				.input {
+					margin-bottom: 1rem;
+				}
+
+				.auth__form-row {
+					margin-top: 2rem;
+
+					@include flex(space-between);
+				}
+
+				.button {
+					margin-top: 1rem;
+				}
+			}
+		}
+
+		.auth__socials {
+			margin: 0 auto;
+			max-width: 21rem;
+			margin-top: 4rem;
+
+			.auth__socials-header {
+				font-weight: 600;
+				text-align: center;
+				text-transform: uppercase;
+
+				@include flex(space-between, center);
+
+				&:before,
+				&:after {
+					content: '';
+					width: 4.05rem;
+					height: .15rem;
+					display: block;
+					background-color: $color-dark-blue;
+				}
+			}
+
+			ul.auth__socials-items {
+				margin-top: 1rem;
+
+				@include flex(center);
+
+				.auth__socials-item {
+					cursor: pointer;
+					margin-right: 1rem;
+					box-shadow: $box-shadow;
+					background-color: #fff;
+					border-radius: $border-radius;
+
+					@include square(3rem);
+					@include flex(center, center);
+
+					&:last-child {
+						margin-right: 0;
+					}
+
+					&:hover img,
+					&:focus img {
+						filter: invert(33%) sepia(81%) saturate(3748%) hue-rotate(324deg) brightness(100%) contrast(106%);
+					}
+
+					img {
+						width: 1rem;
+						transition: $transition-time $transition-mode;
+						filter: invert(7%) sepia(40%) saturate(5410%) hue-rotate(222deg) brightness(82%) contrast(115%);
+					}
+				}
+			}
+		}
+
+		.auth__footer {
+			margin-top: 2rem;
+			text-align: center;
+		}
+	}
+}
