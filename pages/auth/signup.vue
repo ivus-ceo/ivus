@@ -7,10 +7,10 @@
       </div>
 
       <div class="auth__form">
-        <Form id="signup-form" action="/signup" @formSubmit="signup">
-          <Input id="login" v-model="auth.login" name="login" type="text" icon="person" placeholder="Enter Name"/>
-          <Input id="email" v-model="auth.email" name="email" type="text" icon="email" placeholder="Enter E-Mail"/>
-          <Input id="password" v-model="auth.password" name="password" type="password" icon="lock" placeholder="Enter Password"/>
+        <Form class="signup__form" action="/signup" @formSubmit="signup">
+          <Input id="email" :errors="auth.errors" v-model="auth.email" name="email" type="text" icon="email" placeholder="Enter E-Mail"/>
+          <Input id="password" :errors="auth.errors" v-model="auth.password" name="password" type="password" icon="lock" placeholder="Enter Password"/>
+          <Input id="repeated-password" :errors="auth.errors" v-model="auth.repeatedPassword" name="repeatedPassword" type="password" icon="lock" placeholder="Repeat Password"/>
 
           <div class="auth__form-row">
             <Checkbox id="checkbox" v-model="auth.checkbox" name="checkbox" label="I agree with Terms and Privacy"/>
@@ -38,18 +38,49 @@
     data() {
       return {
         auth: {
-          login: null,
           email: null,
           password: null,
+          repeatedPassword: null,
           checkbox: null,
+          // errors: {
+          //   'email': ['Email incorrect', 'Your email sucks'],
+          //   'password': ['Password incorrect'],
+          //   'repeated-password': ['Password incorrect again']
+          // },
         },
       }
     },
 
     methods: {
       signup() {
-        
-      }
+        // this.$fire.auth.createUserWithEmailAndPassword(this.auth.email, this.auth.password)          
+        //   .then((userCredential) => {
+        //     // Signed in 
+        //     var user = userCredential.user;
+        //     console.log(userCredential);
+        //   })
+        //   .catch((error) => {
+        //     var errorCode = error.code;
+        //     var errorMessage = error.message;
+        //     console.log(error);
+        //   });
+      },
+
+      isPasswordsMatch() {
+        return ;
+      },
+
+      isCheckboxChecked() {
+        return this.auth.checkbox;
+      },
+
+      getValidationErrors() {
+        if (this.auth.password !== this.auth.repeatedPassword) {
+          
+        }
+
+        // this.auth.errors.push({ id: 'email', message: 'asdasdsaadsad' });
+      },
     }
   }
 </script>

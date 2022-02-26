@@ -38,14 +38,15 @@
 <style lang="scss">
   .button {
     width: 100%;
-    height: 3rem;
     border: none;
     color: #fff;
     outline: none;
+    height: 3.5rem;
     cursor: pointer;
     overflow: hidden;
     font-weight: 700;
     position: relative;
+    letter-spacing: 1px;
     box-shadow: $box-shadow;
     text-transform: uppercase;
     border-radius: $border-radius;

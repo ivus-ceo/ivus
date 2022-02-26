@@ -21,8 +21,8 @@ section.auth {
 			margin: 0 auto;
 			max-width: 21rem;
 
-			#login-form,
-			#signup-form {
+			.login__form,
+			.signup__form {
 				width: 100%;
 
 				.input {
@@ -32,7 +32,7 @@ section.auth {
 				.auth__form-row {
 					margin-top: 2rem;
 
-					@include flex(space-between);
+					@include flex(space-between, baseline);
 				}
 
 				.button {

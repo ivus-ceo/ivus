@@ -7,7 +7,7 @@
       </div>
 
       <div class="auth__form">
-        <Form id="login-form" action="/login" @formSubmit="login">
+        <Form class="login__form" action="/login" @formSubmit="login">
           <Input id="login" v-model="auth.login" name="login" type="text" icon="person" placeholder="Enter Name"/>
           <Input id="password" v-model="auth.password" name="password" type="password" icon="lock" placeholder="Enter Password"/>
 

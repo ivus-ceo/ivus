@@ -2,13 +2,14 @@
   <div class="checkbox" ref="checkbox">
     <div class="checkbox__box" @click.stop="handleClick">
       <input class="checkbox__input"
-            :id="id"
-            :name="name"
-            type="checkbox">
+        :id="id"
+        :name="name"
+        type="checkbox">
+
       <i class="checkbox__checkmark material-icons">check</i>
     </div>
 
-    <label class="checkbox__label" :for="id">{{ this.label }}</label>
+    <label class="checkbox__label" :for="id">{{ label }}</label>
   </div>
 </template>
 
@@ -38,7 +39,7 @@
 
 <style lang="scss">
   div.checkbox {
-    @include flex(flex-start, center);
+    @include flex(flex-start, baseline);
 
     &.checkbox--active {
 
@@ -50,14 +51,12 @@
     }
 
     .checkbox__box {
-      width: 1rem;
-      height: 1rem;
       position: relative;
       border-radius: .3rem;
       border: .15rem solid $color-base;
       transition: .1s $transition-mode;
 
-      @include fixed-size(1rem, 1rem);
+      @include fixed-size(1.25rem, 1.25rem);
 
       .checkbox__input {
         margin: 0;
@@ -76,10 +75,10 @@
         left: 0;
         display: none;
         color: #fff;
-        font-size: .75rem;
+        font-size: .9rem;
         position: absolute;
         pointer-events: none;
-        transform: translate(calc(50% - .25rem), calc(50% - .25rem));
+        transform: translate(.18rem, .18rem);
       }
     }
 
