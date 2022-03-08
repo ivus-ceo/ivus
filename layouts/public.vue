@@ -9,6 +9,8 @@
     <div class="layout__navbar">
       <Navbar/>
     </div>
+
+    <Modal/>
   </main>
 </template>
 

@@ -48,13 +48,19 @@
         background-color: $color-base;
         outline: .25rem solid $color-base-accent;
       }
+
+      .checkbox__label {
+        transition: none;
+        transform: translateY(.15rem);
+      }
     }
 
     .checkbox__box {
       position: relative;
       border-radius: .3rem;
       border: .15rem solid $color-base;
-      transition: .1s $transition-mode;
+      transition: background-color .1s $transition-mode,
+                  outline .1s $transition-mode;
 
       @include fixed-size(1.25rem, 1.25rem);
 

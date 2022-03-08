@@ -8,15 +8,37 @@
 
       <div class="auth__form">
         <Form class="signup__form" action="/signup" @formSubmit="signup">
-          <Input id="email" :errors="auth.errors" v-model="auth.email" name="email" type="text" icon="email" placeholder="Enter E-Mail"/>
-          <Input id="password" :errors="auth.errors" v-model="auth.password" name="password" type="password" icon="lock" placeholder="Enter Password"/>
-          <Input id="repeated-password" :errors="auth.errors" v-model="auth.repeatedPassword" name="repeatedPassword" type="password" icon="lock" placeholder="Repeat Password"/>
+          <Input id="email" 
+                 :alerts="auth.email.alerts" 
+                 v-model="auth.email.value"
+                 name="email" type="text" 
+                 icon="email" 
+                 placeholder="Enter E-Mail"/>
+          
+          <Input id="password" 
+                 :alerts="auth.password.alerts" 
+                 v-model="auth.password.value"
+                 name="password" 
+                 type="password" 
+                 icon="lock" 
+                 placeholder="Enter Password"/>
+          
+          <Input id="repeated-password" 
+                 :alerts="auth.repeatedPassword.alerts" 
+                 v-model="auth.repeatedPassword.value"
+                 name="repeatedPassword" 
+                 type="password" 
+                 icon="lock" 
+                 placeholder="Repeat Password"/>
 
           <div class="auth__form-row">
-            <Checkbox id="checkbox" v-model="auth.checkbox" name="checkbox" label="I agree with Terms and Privacy"/>
+            <Checkbox id="checkbox" 
+                      v-model="auth.checkbox" 
+                      name="checkbox" 
+                      label="I agree with Terms and Privacy"/>
           </div>
 
-          <Button>
+          <Button :isLoading="auth.button.isLoading">
             <i class="material-icons">login</i>
             <span>Signup</span>
           </Button>
@@ -38,53 +60,58 @@
     data() {
       return {
         auth: {
-          email: null,
-          password: null,
-          repeatedPassword: null,
-          checkbox: null,
-          // errors: {
-          //   'email': ['Email incorrect', 'Your email sucks'],
-          //   'password': ['Password incorrect'],
-          //   'repeated-password': ['Password incorrect again']
-          // },
+          email: {
+            value: '',
+            alerts: []
+          },
+          password: {
+            value: '',
+            alerts: []
+          },
+          repeatedPassword: {
+            value: '',
+            alerts: []
+          },
+          checkbox: {
+            value: '',
+            alerts: []
+          },
+          button: {
+            isLoading: false,
+          }
         },
       }
     },
 
     methods: {
       signup() {
-        // this.$fire.auth.createUserWithEmailAndPassword(this.auth.email, this.auth.password)          
-        //   .then((userCredential) => {
-        //     // Signed in 
-        //     var user = userCredential.user;
-        //     console.log(userCredential);
-        //   })
-        //   .catch((error) => {
-        //     var errorCode = error.code;
-        //     var errorMessage = error.message;
-        //     console.log(error);
-        //   });
-      },
+        this.auth.button.isLoading = true;
 
-      isPasswordsMatch() {
-        return ;
-      },
-
-      isCheckboxChecked() {
-        return this.auth.checkbox;
-      },
-
-      getValidationErrors() {
-        if (this.auth.password !== this.auth.repeatedPassword) {
-          
+        if (this.validateSignupForm()) {
+          this.auth.button.isLoading = false;
+          return;
         }
 
-        // this.auth.errors.push({ id: 'email', message: 'asdasdsaadsad' });
+        this.$fire.auth.createUserWithEmailAndPassword(this.auth.email, this.auth.password)          
+          .then((userCredential) => {
+            var user = userCredential.user;
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+          });
       },
+
+      validateSignupForm() {
+        let hasErrors = false;
+
+        if (this.auth.password.value !== this.auth.repeatedPassword.value) {
+          hasErrors = true;       
+          this.auth.repeatedPassword.alerts.push({ type: 'danger', message: `Passwords don't match` });
+        }
+
+        return hasErrors;
+      }
     }
   }
 </script>
-
-<style lang="scss">
-  
-</style>

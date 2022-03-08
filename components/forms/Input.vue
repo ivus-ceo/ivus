@@ -5,17 +5,14 @@
         <i :class="iconType">{{ icon }}</i>
       </label>
 
-      <input :id="id" :name="name" :type="type" placeholder=" " class="input__input">
+      <input :id="id" :name="name" :type="type" :value="value" placeholder=" " class="input__input" @input="handleInput">
 
       <small class="input__placeholder">{{ placeholder }}</small>
     </div>
-
-    <div :key="index" v-for="(error, index) in inputErrors" class="input__error">
-      <div class="input__error-icon">
-        <i class="material-icons-outlined">close</i>
-      </div>
-      <span>{{ error }}</span>
-    </div>
+    
+    <Alert icon="contact_phone" :type="alert.type" :key="index" v-for="(alert, index) in alerts" class="input__alert">
+      <span>{{ alert.message }}</span>
+    </Alert>
   </div>
 </template>
 
@@ -27,8 +24,12 @@
       id: String,
       name: String,
       icon: String,
-      errors: Object,
       placeholder: String,
+      value: String,
+      alerts: {
+        type: Array,
+        default: [],
+      },
       type: {
         type: String,
         default: 'text'
@@ -46,11 +47,14 @@
     },
 
     computed: {
-      inputErrors: function() {
-        return (this.errors && this.errors[this.id].length > 0) ? this.errors[this.id] : [];
-      },
-      hasErrors: function() {
-        return this.errors && this.errors[this.id].length > 0
+      hasErrors() {
+        for (const alert of this.alerts) {          
+          if (alert.type === 'danger') {
+            return true;
+          }
+        }
+
+        return false;
       },
     }
   }
@@ -59,15 +63,7 @@
 <style lang="scss">
   div.input {
 
-    &.input--has-error {
-
-      .input__inner {
-
-        .input__input {
-          
-        }
-      }
-    }
+    &.input--has-error {}
 
     .input__inner {
       display: flex;
@@ -104,17 +100,16 @@
         transition: all $transition-time;
         font-family: $font-family-regular;
 
-        &:focus ~ .input__placeholder,
-        &:hover ~ .input__placeholder {
+        &:focus ~ .input__placeholder {
           top: .85rem;
           font-size: .75rem;
-          color: rgba($color-dark-blue, .5);
+          color: rgba($color-dark-blue, .75);
         }
 
         &:not(&:placeholder-shown) ~ .input__placeholder {
           top: .85rem;
           font-size: .75rem;
-          color: rgba($color-dark-blue, .5);
+          color: rgba($color-dark-blue, .75);
         }
       }
 
@@ -127,26 +122,8 @@
       }
     }
     
-    .input__error {
-      padding: 1rem;
-      color: #EA2027;
+    .input__alert {
       margin-top: .5rem;
-      font-weight: 600;
-      background-color: #FBD2D4;
-      border-radius: $border-radius;
-
-      @include flex(flex-start, center);
-
-      .input__error-icon {
-        margin-right: .5rem;
-        border-radius: $border-radius / 2;
-
-        @include flex(center, center);
-
-        i {
-          font-size: 1.2rem;
-        }
-      }
     }
   }
 </style>

@@ -151,3 +151,13 @@
 		transform: translateX($sidebar-transform-offset);
 	}
 }
+
+@keyframes buttonLoader {
+	from {
+		transform: translateX(-100%);
+	}
+
+	to {
+		transform: translateX(200%);
+	}
+}

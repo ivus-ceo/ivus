@@ -30,9 +30,9 @@
         </div>
       </div>
 
-      <div class="sidebar__search">
+      <!-- <div class="sidebar__search">
         <Input id="search" name="search" placeholder="Search"/>
-      </div>
+      </div> -->
 
       <div class="sidebar__links">
         <div class="sidebar__links-header">

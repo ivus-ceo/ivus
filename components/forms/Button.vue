@@ -1,6 +1,11 @@
 <template>
-  <button class="button" @click="handleClick">
-    <slot/>
+  <button class="button" :class="{ 'button--is-loading': isLoading }" @click="handleClick">
+    <div v-if="isLoading" class="button__loading">
+      <div class="button__loading-title">{{ loadingTitle }}</div>
+      <div class="button__loading-progress"></div>
+    </div>
+
+    <slot v-if="!isLoading"/>
   </button>
 </template>
 
@@ -9,6 +14,14 @@
     name: 'Button',
 
     props: {
+      isLoading: {
+        type: Boolean,
+        default: false
+      },
+      loadingTitle: {
+        type: String,
+        default: 'Loading'
+      },
       timeout: {
         type: [String, Number],
         default: 400,
@@ -17,6 +30,8 @@
 
     methods: {
       handleClick(e) {
+        if (this.isLoading) return; 
+
         const ripple = document.createElement('span');
 
         ripple.classList.add('ripple')
@@ -25,7 +40,7 @@
         
         e.target.appendChild(ripple)
 
-        this.$emit('buttonClick')
+        this.$emit('buttonClick', e)
 
         setTimeout(() => {
           ripple.remove()
@@ -51,9 +66,36 @@
     text-transform: uppercase;
     border-radius: $border-radius;
     background-color: $color-base;
-    transition: .1s box-shadow $transition-mode;
+    font-family: $font-family-regular;
+    transition: .1s box-shadow $transition-mode,
+                .1s background-color $transition-mode;
 
     @include flex(center, center);
+
+    &.button--is-loading {
+      padding: 0;
+      pointer-events: none;
+      
+      .button__loading {
+        width: 100%;
+        height: 100%;
+        user-select: none;
+      
+        @include flex(center, center);
+
+        .button__loading-title {}
+
+        .button__loading-progress {
+          left: 0;
+          bottom: 0;
+          width: 50%;
+          height: .4rem;
+          position: absolute;
+          background-color: lighten($color-base, 25);
+          animation: buttonLoader 1.2s infinite;
+        }
+      }
+    }
 
     i {
       font-size: 1rem;
