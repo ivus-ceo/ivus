@@ -1,18 +1,16 @@
 section.auth {
-	height: 100%;
-
-	.auth__inner {
+	.section__inner {
 		height: 100%;
 
-		.auth__header {
+		.section__header {
 			margin-top: 6rem;
 			text-align: center;
 
-			.auth__header-title {
+			.section__header-title {
 				margin-bottom: 1rem;
 			}
 
-			.auth__header-description {
+			.section__header-subtitle {
 				margin-bottom: 2rem;
 			}
 		}
@@ -33,6 +31,11 @@ section.auth {
 					margin-top: 2rem;
 
 					@include flex(space-between, baseline);
+
+					a {
+						font-weight: 400;
+						color: $color-dark-blue;
+					}
 				}
 
 				.button {
@@ -75,21 +78,15 @@ section.auth {
 					background-color: #fff;
 					border-radius: $border-radius;
 
-					@include square(3rem);
+					@include square(3.5rem);
 					@include flex(center, center);
 
 					&:last-child {
 						margin-right: 0;
 					}
 
-					&:hover img,
-					&:focus img {
-						filter: invert(33%) sepia(81%) saturate(3748%) hue-rotate(324deg) brightness(100%) contrast(106%);
-					}
-
 					img {
-						width: 1rem;
-						transition: $transition-time $transition-mode;
+						width: 1.3rem;
 						filter: invert(7%) sepia(40%) saturate(5410%) hue-rotate(222deg) brightness(82%) contrast(115%);
 					}
 				}

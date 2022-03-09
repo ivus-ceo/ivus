@@ -10,9 +10,9 @@
       <small class="input__placeholder">{{ placeholder }}</small>
     </div>
     
-    <Alert icon="contact_phone" :type="alert.type" :key="index" v-for="(alert, index) in alerts" class="input__alert">
+    <BaseAlert icon="contact_phone" :type="alert.type" :key="index" v-for="(alert, index) in alerts" class="input__alert">
       <span>{{ alert.message }}</span>
-    </Alert>
+    </BaseAlert>
   </div>
 </template>
 

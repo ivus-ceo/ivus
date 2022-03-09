@@ -1,29 +1,41 @@
 <template>
-  <section class="auth">
-    <div class="auth__inner">
-      <div class="auth__header">
-        <h1 class="auth__header-title">Welcome back</h1>
-        <p class="auth__header-description">Please enter your credentials to sign in.</p>
-      </div>
+  <BaseSection title="Welcome back" subtitle="Please enter your credentials to sign in." class="auth">
+    <div class="auth__form">
+      <BaseForm action="/login" class="login__form" @formSubmit="login">
+        <BaseInput id="login"
+                   name="email"
+                   icon="email" 
+                   :alerts="auth.email.alerts" 
+                   v-model="auth.email.value"
+                   placeholder="Enter E-Mail"/>
 
-      <div class="auth__form">
-        <Form class="login__form" action="/login" @formSubmit="login">
-          <Input id="login" v-model="auth.login" name="login" type="text" icon="person" placeholder="Enter Name"/>
-          <Input id="password" v-model="auth.password" name="password" type="password" icon="lock" placeholder="Enter Password"/>
+        <BaseInput id="password"
+                   name="password" 
+                   type="password" 
+                   icon="lock"
+                   :alerts="auth.password.alerts"
+                   v-model="auth.password.value"
+                   placeholder="Enter Password"/>
 
-          <div class="auth__form-row">
-            <Checkbox id="checkbox" v-model="auth.checkbox" name="checkbox" label="Remember Me"/>
-            <nuxt-link to="/auth/forgot">Forgot password</nuxt-link>
-          </div>
+        <div class="auth__form-row">
+          <BaseCheckbox id="checkbox"
+                    name="checkbox"
+                    v-model="auth.checkbox" 
+                    label="I agree with Terms and Privacy">
+            <span>Remember Me</span>
+          </BaseCheckbox>
+          
+          <nuxt-link to="/auth/forgot">Forgot password</nuxt-link>
+        </div>
 
-          <Button>
-            <i class="material-icons">login</i>
-            <span>Login</span>
-          </Button>
-        </Form>
-      </div>
+        <BaseButton :isLoading="auth.button.isLoading">
+          <i class="material-icons">login</i>
+          <span>Login</span>
+        </BaseButton>
+      </BaseForm>
+    </div>
 
-      <div class="auth__socials">
+    <div class="auth__socials">
         <div class="auth__socials-header">
           Or Continue With
         </div>
@@ -47,12 +59,11 @@
         </ul>
       </div>
 
-      <div class="auth__footer">
-        <p>Don't have an account?</p>
-        <nuxt-link to="/auth/signup">Signup For Free</nuxt-link>
-      </div>
+    <div class="auth__footer">
+      <p>Don't have an account?</p>
+      <nuxt-link to="/auth/signup">Signup For Free</nuxt-link>
     </div>
-  </section>
+  </BaseSection>
 </template>
 
 <script>
@@ -62,9 +73,20 @@
     data() {
       return {
         auth: {
-          login: null,
-          password: null,
-          checkbox: null,
+          email: {
+            value: '',
+            alerts: [],
+          },
+          password: {
+            value: '',
+            alerts: [],
+          },
+          checkbox: {
+            value: '',
+          },
+          button: {
+            isLoading: false,
+          }
         },
       }
     },
@@ -76,7 +98,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  
-</style>

@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'Form',
+    name: 'BaseForm',
 
     props: {
       id: String,
@@ -15,7 +15,7 @@
 
     methods: {
       handleSubmit(e) {
-        this.$emit('formSubmit')
+        this.$emit('formSubmit', e);
       }
     }
   }

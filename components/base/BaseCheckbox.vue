@@ -9,7 +9,9 @@
       <i class="checkbox__checkmark material-icons">check</i>
     </div>
 
-    <label class="checkbox__label" :for="id">{{ label }}</label>
+    <label class="checkbox__label" :for="id">
+      <slot/>
+    </label>
   </div>
 </template>
 
@@ -20,7 +22,6 @@
     props: {
       id: String,
       name: String,
-      label: String
     },
 
     methods: {

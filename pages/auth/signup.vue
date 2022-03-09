@@ -1,56 +1,51 @@
 <template>
-  <section class="auth">
-    <div class="auth__inner">
-      <div class="auth__header">
-        <h1 class="auth__header-title">Create account</h1>
-        <p class="auth__header-description">We'll create your free and brand new account.</p>
-      </div>
+  <BaseSection title="Create account" subtitle="We'll create your free and brand new account." class="auth">
+    <div class="auth__form">
+      <BaseForm action="/signup" class="signup__form" @formSubmit="signup">
+        <BaseInput id="email"
+                    name="email"
+                    icon="email" 
+                    :alerts="auth.email.alerts" 
+                    v-model="auth.email.value"
+                    placeholder="Enter E-Mail"/>
 
-      <div class="auth__form">
-        <Form class="signup__form" action="/signup" @formSubmit="signup">
-          <Input id="email" 
-                 :alerts="auth.email.alerts" 
-                 v-model="auth.email.value"
-                 name="email" type="text" 
-                 icon="email" 
-                 placeholder="Enter E-Mail"/>
-          
-          <Input id="password" 
-                 :alerts="auth.password.alerts" 
-                 v-model="auth.password.value"
-                 name="password" 
-                 type="password" 
-                 icon="lock" 
-                 placeholder="Enter Password"/>
-          
-          <Input id="repeated-password" 
-                 :alerts="auth.repeatedPassword.alerts" 
-                 v-model="auth.repeatedPassword.value"
-                 name="repeatedPassword" 
-                 type="password" 
-                 icon="lock" 
-                 placeholder="Repeat Password"/>
+        <BaseInput id="password"
+                    name="password" 
+                    type="password" 
+                    icon="lock"
+                    :alerts="auth.password.alerts"
+                    v-model="auth.password.value"
+                    placeholder="Enter Password"/>
 
-          <div class="auth__form-row">
-            <Checkbox id="checkbox" 
-                      v-model="auth.checkbox" 
-                      name="checkbox" 
-                      label="I agree with Terms and Privacy"/>
-          </div>
+        <BaseInput id="repeated-password"
+                    name="repeatedPassword" 
+                    type="password" 
+                    icon="lock"
+                    :alerts="auth.repeatedPassword.alerts" 
+                    v-model="auth.repeatedPassword.value"
+                    placeholder="Repeat Password"/>
 
-          <Button :isLoading="auth.button.isLoading">
-            <i class="material-icons">login</i>
-            <span>Signup</span>
-          </Button>
-        </Form>
-      </div>
+        <div class="auth__form-row">
+          <BaseCheckbox id="checkbox"
+                    name="checkbox"
+                    v-model="auth.checkbox" 
+                    label="I agree with Terms and Privacy">
+            <span>I agree with Terms and Privacy</span>
+          </BaseCheckbox>
+        </div>
 
-      <div class="auth__footer">
-        <p>Already have an account?</p>
-        <nuxt-link to="/auth/login">Login</nuxt-link>
-      </div>
+        <BaseButton :isLoading="auth.button.isLoading">
+          <i class="material-icons">login</i>
+          <span>Signup</span>
+        </BaseButton>
+      </BaseForm>
     </div>
-  </section>
+
+    <div class="auth__footer">
+      <p>Already have an account?</p>
+      <nuxt-link to="/auth/login">Login</nuxt-link>
+    </div>
+  </BaseSection>
 </template>
 
 <script>
@@ -92,14 +87,18 @@
           return;
         }
 
-        this.$fire.auth.createUserWithEmailAndPassword(this.auth.email, this.auth.password)          
-          .then((userCredential) => {
-            var user = userCredential.user;
-          })
-          .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-          });
+        this.$store.commit('setUser', 123)
+
+        // this.$fire.auth.createUserWithEmailAndPassword(this.auth.email.value, this.auth.password.value)          
+        //   .then((userCredential) => {
+        //     // console.log(userCredential, userCredential.user);
+        //     this.$store.commit('setUser', userCredential.user)
+        //     // var user = userCredential.user;
+        //   })
+        //   .catch((error) => {
+        //     // var errorCode = error.code;
+        //     // var errorMessage = error.message;
+        //   });
       },
 
       validateSignupForm() {

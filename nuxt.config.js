@@ -80,8 +80,8 @@ export default {
    */
   components: [
     '~/components',
-    { path: '~/components/forms', extensions: ['vue'] },
-    { path: '~/components/includes', extensions: ['vue'] }
+    { path: '~/components/base', extensions: ['vue'] },
+    { path: '~/components/layouts', extensions: ['vue'] }
   ],
 
   /**

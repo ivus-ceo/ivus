@@ -1,12 +1,17 @@
 export const state = () => ({
-  user: []
+  user: {}
 })
 
 export const mutations = {
-  add(state, text) {
-    state.list.push({
-      text,
-      done: false
-    })
+  setUser(state, user) {
+    state.user = user;
   }
+}
+
+export const actions = {
+
+}
+
+export const getters = {
+
 }
