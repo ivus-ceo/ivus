@@ -7,7 +7,7 @@
     <div class="layout__navbar">
       <AppNavbar/>
     </div>
-
+  
     <BaseModal ref="modal"/>
   </main>
 </template>
@@ -18,7 +18,7 @@
 
     methods: {
       toggleSidebar() {
-        this.$refs.layout.classList.toggle('layout--hide-sidebar')
+        this.$refs.layout.classList.toggle('layout--show-sidebar')
       },
 
       showModal() {
@@ -41,19 +41,20 @@
 <style lang="scss">
   main.layout {
     width: 100vw;
+    height: 100vh;
     display: flex;
     overflow-x: hidden;
     position: relative;
     flex-direction: column;
-    height: calc(100vh - 5rem);
 
     &.layout--show-sidebar {
-      transform: translateX(-80%);
+      overflow-y: hidden;
     }
 
     .layout__content {
       flex: auto;
       position: relative;
+      transition: $transition-time transform $transition-mode;
     }
   }
 </style>

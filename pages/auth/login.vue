@@ -1,7 +1,10 @@
 <template>
-  <BaseSection title="Welcome back" subtitle="Please enter your credentials to sign in." class="auth">
-    <div class="auth__form">
-      <BaseForm action="/login" class="login__form" @formSubmit="login">
+  <BaseSection title="Welcome back" 
+               subtitle="Please enter your credentials to sign in." 
+               class="section-auth">
+    
+    <div class="section-auth__form">
+      <BaseForm action="/login" class="section-auth__form-login" @formSubmit="login">
         <BaseInput id="login"
                    name="email"
                    icon="email" 
@@ -35,34 +38,35 @@
       </BaseForm>
     </div>
 
-    <div class="auth__socials">
-        <div class="auth__socials-header">
-          Or Continue With
-        </div>
-
-        <ul class="auth__socials-items">
-          <li class="auth__socials-item">
-            <img src="~/assets/icons/google.svg" alt="Google">
-          </li>
-
-          <li class="auth__socials-item">
-            <img src="~/assets/icons/facebook.svg" alt="Facebook">
-          </li>
-
-          <li class="auth__socials-item">
-            <img src="~/assets/icons/twitter.svg" alt="Twitter">
-          </li>
-
-          <li class="auth__socials-item">
-            <img src="~/assets/icons/github.svg" alt="Github">
-          </li>
-        </ul>
+    <div class="section-auth__socials">
+      <div class="auth__socials-header">
+        Or Continue With
       </div>
 
-    <div class="auth__footer">
+      <ul class="auth__socials-items">
+        <li class="auth__socials-item">
+          <img src="@/assets/icons/google.svg" alt="Google">
+        </li>
+
+        <li class="auth__socials-item">
+          <img src="@/assets/icons/facebook.svg" alt="Facebook">
+        </li>
+
+        <li class="auth__socials-item">
+          <img src="@/assets/icons/twitter.svg" alt="Twitter">
+        </li>
+
+        <li class="auth__socials-item">
+          <img src="@/assets/icons/github.svg" alt="Github">
+        </li>
+      </ul>
+    </div>
+
+    <div class="section-auth__footer">
       <p>Don't have an account?</p>
       <nuxt-link to="/auth/signup">Signup For Free</nuxt-link>
     </div>
+    
   </BaseSection>
 </template>
 

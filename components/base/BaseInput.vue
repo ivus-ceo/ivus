@@ -1,5 +1,5 @@
 <template>
-  <div class="input" :class="{ 'input--has-error': hasErrors }" ref="input">
+  <div class="input" :class="{ 'input--has-error': hasErrors, 'input--has-not-icon': hasIcon }" ref="input">
     <div class="input__inner">
       <label v-if="icon" :for="id" class="input__label">
         <i :class="iconType">{{ icon }}</i>
@@ -56,6 +56,10 @@
 
         return false;
       },
+
+      hasIcon() {
+        if (!this.icon) return true;
+      },
     }
   }
 </script>
@@ -64,6 +68,20 @@
   div.input {
 
     &.input--has-error {}
+
+    &.input--has-not-icon {
+
+      .input__inner {
+
+        .input__placeholder {
+          left: 1rem;
+          top: calc(50% - .5rem);
+          position: absolute;
+          pointer-events: none;
+          transition: .1s $transition-mode;
+        }
+      }
+    }
 
     .input__inner {
       display: flex;
@@ -114,7 +132,7 @@
       }
 
       .input__placeholder {
-        top: 1.25rem;
+        top: calc(50% - .5rem);
         left: 5rem;
         position: absolute;
         pointer-events: none;

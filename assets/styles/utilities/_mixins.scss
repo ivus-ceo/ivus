@@ -37,6 +37,11 @@
 	max-width: $size;
 }
 
+@mixin fixed-height($size: 'null') {
+	min-height: $size;
+	max-height: $size;
+}
+
 @mixin fixed-size($width: 'null', $height: 'null') {
 	min-width: $width;
 	max-width: $width;

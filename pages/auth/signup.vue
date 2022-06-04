@@ -1,7 +1,10 @@
 <template>
-  <BaseSection title="Create account" subtitle="We'll create your free and brand new account." class="auth">
-    <div class="auth__form">
-      <BaseForm action="/signup" class="signup__form" @formSubmit="signup">
+  <BaseSection title="Create account" 
+               subtitle="We'll create your free and brand new account." 
+               class="section-auth">
+    
+    <div class="section-auth__form">
+      <BaseForm action="/signup" class="section-auth__form-signup" @formSubmit="signup">
         <BaseInput id="email"
                     name="email"
                     icon="email" 
@@ -41,10 +44,11 @@
       </BaseForm>
     </div>
 
-    <div class="auth__footer">
+    <div class="section-auth__footer">
       <p>Already have an account?</p>
       <nuxt-link to="/auth/login">Login</nuxt-link>
     </div>
+    
   </BaseSection>
 </template>
 

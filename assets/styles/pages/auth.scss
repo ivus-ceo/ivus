@@ -1,6 +1,6 @@
-section.auth {
+section.section-auth {
 	.section__inner {
-		height: 100%;
+		min-height: 100%;
 
 		.section__header {
 			margin-top: 6rem;
@@ -15,87 +15,89 @@ section.auth {
 			}
 		}
 
-		.auth__form {
-			margin: 0 auto;
-			max-width: 21rem;
+		.section__content {
+			.section-auth__form {
+				margin: 0 auto;
+				max-width: 21rem;
 
-			.login__form,
-			.signup__form {
-				width: 100%;
+				.section-auth__form-login,
+				.section-auth__form-signup {
+					width: 100%;
 
-				.input {
-					margin-bottom: 1rem;
+					.input {
+						margin-bottom: 1rem;
+					}
+
+					.auth__form-row {
+						margin-top: 2rem;
+
+						@include flex(space-between, baseline);
+
+						a {
+							font-weight: 400;
+							color: $color-dark-blue;
+						}
+					}
+
+					.button {
+						margin-top: 1rem;
+					}
 				}
+			}
 
-				.auth__form-row {
-					margin-top: 2rem;
+			.section-auth__socials {
+				margin: 0 auto;
+				max-width: 21rem;
+				margin-top: 4rem;
 
-					@include flex(space-between, baseline);
+				.auth__socials-header {
+					font-weight: 600;
+					text-align: center;
+					text-transform: uppercase;
 
-					a {
-						font-weight: 400;
-						color: $color-dark-blue;
+					@include flex(space-between, center);
+
+					&:before,
+					&:after {
+						content: '';
+						width: 4.05rem;
+						height: .15rem;
+						display: block;
+						background-color: $color-dark-blue;
 					}
 				}
 
-				.button {
+				ul.auth__socials-items {
 					margin-top: 1rem;
+
+					@include flex(center);
+
+					.auth__socials-item {
+						cursor: pointer;
+						margin-right: 1rem;
+						box-shadow: $box-shadow;
+						background-color: #fff;
+						border-radius: $border-radius;
+
+						@include square(3.5rem);
+						@include flex(center, center);
+
+						&:last-child {
+							margin-right: 0;
+						}
+
+						img {
+							width: 1.3rem;
+							filter: invert(7%) sepia(40%) saturate(5410%) hue-rotate(222deg) brightness(82%) contrast(115%);
+						}
+					}
 				}
 			}
-		}
 
-		.auth__socials {
-			margin: 0 auto;
-			max-width: 21rem;
-			margin-top: 4rem;
-
-			.auth__socials-header {
-				font-weight: 600;
+			.section-auth__footer {
+				margin-top: 2rem;
 				text-align: center;
-				text-transform: uppercase;
-
-				@include flex(space-between, center);
-
-				&:before,
-				&:after {
-					content: '';
-					width: 4.05rem;
-					height: .15rem;
-					display: block;
-					background-color: $color-dark-blue;
-				}
 			}
-
-			ul.auth__socials-items {
-				margin-top: 1rem;
-
-				@include flex(center);
-
-				.auth__socials-item {
-					cursor: pointer;
-					margin-right: 1rem;
-					box-shadow: $box-shadow;
-					background-color: #fff;
-					border-radius: $border-radius;
-
-					@include square(3.5rem);
-					@include flex(center, center);
-
-					&:last-child {
-						margin-right: 0;
-					}
-
-					img {
-						width: 1.3rem;
-						filter: invert(7%) sepia(40%) saturate(5410%) hue-rotate(222deg) brightness(82%) contrast(115%);
-					}
-				}
-			}
-		}
-
-		.auth__footer {
-			margin-top: 2rem;
-			text-align: center;
 		}
 	}
 }

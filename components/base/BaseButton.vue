@@ -92,7 +92,7 @@
           height: .4rem;
           position: absolute;
           background-color: lighten($color-base, 25);
-          animation: buttonLoader 1.2s infinite;
+          animation: animateButtonLoader 1.2s infinite;
         }
       }
     }
